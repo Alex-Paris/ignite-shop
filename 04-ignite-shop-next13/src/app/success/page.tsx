@@ -1,16 +1,44 @@
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
 
 import { getSession } from "@/functions/getCheckout";
 
 interface SuccessPageProps {
-  params: {
+  searchParams: {
     session_id: string
   }
 }
 
-export default async function SuccessPage({ params }: SuccessPageProps) {
-  const { customerName, product } = await getSession(params.session_id);
+export async function generateMetadata(
+  { searchParams }: SuccessPageProps,
+): Promise<Metadata> {
+  // read route params
+  const sessionId = searchParams.session_id
+
+  // fetch data
+  const session = await getSession(sessionId);
+
+  const { customerName, product } = session
+
+  return {
+    title: `Sucesso ${customerName}! ${product.name} é sua! | Ignite Shop`,
+  }
+}
+
+export default async function SuccessPage({ searchParams }: SuccessPageProps) {
+  const sessionId = searchParams.session_id
+  if (!sessionId) {
+    redirect('/')
+  }
+
+  const session = await getSession(sessionId);
+  if (!session) {
+    redirect('/')
+  }
+
+  const { customerName, product } = session
 
   return (
     <main className="flex flex-col items-center justify-center mx-auto h-[656px]">

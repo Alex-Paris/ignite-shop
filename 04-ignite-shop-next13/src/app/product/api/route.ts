@@ -9,9 +9,7 @@ export async function POST(req: Request) {
     return res.json({ error: 'Price not found.' }, { status: 400 })
   }
 
-  // Using this url query just to test route redirect logic
-  // But instead everything, best option is to send it as param
-  const successUrl = `${process.env.NEXT_URL}/success/api?session_id={CHECKOUT_SESSION_ID}`;
+  const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${process.env.NEXT_URL}/`;
 
   const checkoutSession = await stripe.checkout.sessions.create({

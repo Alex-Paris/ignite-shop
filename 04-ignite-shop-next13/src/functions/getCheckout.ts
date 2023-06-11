@@ -21,6 +21,8 @@ export const getSession = (async (sessionId: string) => {
 
   const product = session.line_items.data[0].price.product as Stripe.Product
 
+  console.log(customerName)
+
   return {
     customerName,
     product: {
