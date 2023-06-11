@@ -5,15 +5,13 @@ import { stripe } from "@/lib/stripe";
 export async function POST(req: Request) {
   const { priceId } = await req.json();
 
-  if (req.method !== "POST") {
-    return res.json({ error: 'Method not allowed.' }, { status: 405 })
-  }
-
   if (!priceId) {
     return res.json({ error: 'Price not found.' }, { status: 400 })
   }
 
-  const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
+  // Using this url query just to test route redirect logic
+  // But instead everything, best option is to send it as param
+  const successUrl = `${process.env.NEXT_URL}/success/api?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${process.env.NEXT_URL}/`;
 
   const checkoutSession = await stripe.checkout.sessions.create({
@@ -29,10 +27,9 @@ export async function POST(req: Request) {
   })
 
   return res.json({
+    checkoutId: checkoutSession.id,
     checkoutUrl: checkoutSession.url
   }, {
     status: 201
   })
-  // For same page use this to redirect directly
-  // redirect(new URL(checkoutSession.url || '/'))
 }

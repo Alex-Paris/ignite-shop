@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { getProduct } from "@/utils/getProducts"
+import { getProduct } from "@/functions/getProducts"
 import ConfirmationButton from "../components/ConfirmationButton"
 
 interface ProductProps {
@@ -15,7 +15,13 @@ export default async function Product({ params }: ProductProps) {
   return (
     <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] mx-auto">
       <div className="flex items-center justify-center w-full max-w-xl h-[calc(656px-0.5rem)] bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-lg p-1">
-        <Image src={product.imageUrl} width={520} height={480} alt="" className="object-cover" />
+        <Image
+          src={product.imageUrl}
+          width={520}
+          height={480}
+          alt=""
+          className="object-cover"
+        />
       </div>
 
       <div className="flex flex-col">

@@ -25,7 +25,11 @@ export default function ConfirmationButton({ priceId }: ConfirmationButtonProps)
   }
 
   return (
-    <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct} className="mt-auto bg-green500 border-0 rounded-lg p-5 cursor-pointer font-bold text-base hover:enabled:bg-green300 disabled:opacity-60 disabled:cursor-not-allowed">
+    <button
+      disabled={isCreatingCheckoutSession}
+      onClick={handleBuyProduct}
+      className="mt-auto bg-green500 border-0 rounded-lg p-5 cursor-pointer font-bold text-base hover:enabled:bg-green300 disabled:opacity-60 disabled:cursor-not-allowed"
+    >
       Comprar agora
     </button>
   )

@@ -7,6 +7,9 @@ const nextConfig = {
       'files.stripe.com'
     ]
   },
+  experimental: {
+    serverActions: true
+  }
 }
 
 module.exports = nextConfig
