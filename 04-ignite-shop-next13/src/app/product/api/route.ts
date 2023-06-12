@@ -24,10 +24,5 @@ export async function POST(req: Request) {
     ]
   })
 
-  return res.json({
-    checkoutId: checkoutSession.id,
-    checkoutUrl: checkoutSession.url
-  }, {
-    status: 201
-  })
+  return res.json({ checkoutUrl: checkoutSession.url }, { status: 201 })
 }

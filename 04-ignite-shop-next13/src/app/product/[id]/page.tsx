@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Image from "next/image"
 
 import { getProduct } from "@/functions/getProducts"
-import ConfirmationButton from "../components/ConfirmationButton"
+import ConfirmationButton from "./components/ConfirmationButton"
 
 interface ProductProps {
   params: {
@@ -13,17 +13,21 @@ interface ProductProps {
 export async function generateMetadata(
   { params }: ProductProps,
 ): Promise<Metadata> {
-  // fetch data
   const product = await getProduct(params.id);
 
   return {
     title: `${product.name} | Ignite Shop`,
     description: product.description,
 
+    alternates: {
+      canonical: `${process.env.NEXT_URL}/product/${params.id}`
+    },
+
     openGraph: {
       title: `${product.name} | Ignite Shop`,
       description: product.description || '',
       images: [product.imageUrl],
+      url: `${process.env.NEXT_URL}/product/${params.id}`,
       type: 'article',
     }
   }

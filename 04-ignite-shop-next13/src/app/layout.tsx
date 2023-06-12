@@ -1,10 +1,11 @@
-import './styles/globals.css'
+import './globals.css'
 import Image from 'next/image'
 import { Roboto } from 'next/font/google'
 
-const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'] })
-
+import Providers from '@/context'
 import logoImg from '../assets/logo.svg'
+
+const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'] })
 
 export const metadata = {
   title: 'Ignite Shop',
@@ -19,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-gray900 text-gray100 antialiased ${roboto.className}`}>
-        <div className='flex flex-col items-start justify-center min-w-[100vh]'>
-          <header className='w-full py-8 max-w-[1180px] mx-auto'>
-            <Image src={logoImg} alt="" />
-          </header>
-          {children}
-        </div>
+        <Providers>
+          <div className='flex flex-col items-start justify-center min-w-[100vh]'>
+            <header className='w-full py-8 max-w-[1180px] mx-auto'>
+              <Image src={logoImg} alt="" />
+            </header>
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   )
