@@ -1,8 +1,10 @@
 import './globals.css'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import Image from 'next/image'
 import { Roboto } from 'next/font/google'
 
-import Providers from '@/context'
+import Providers from '@/providers'
 import logoImg from '../assets/logo.svg'
 
 const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'] })
@@ -19,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-gray900 text-gray100 antialiased ${roboto.className}`}>
+      <body className={`bg-gray900 dark:bg-white text-gray100 antialiased ${roboto.className}`}>
         <Providers>
           <div className='flex flex-col items-start justify-center min-w-[100vh]'>
             <header className='w-full py-8 max-w-[1180px] mx-auto'>

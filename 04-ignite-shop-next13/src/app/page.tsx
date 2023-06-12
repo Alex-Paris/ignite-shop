@@ -1,7 +1,7 @@
-import ProductsList from "@/components/ProductsList";
-import { getProducts } from "@/functions/getProducts";
+import { Suspense } from "react";
 
-export const revalidate = 60 // revalidate this page every 60 seconds
+import HomePage from "./(home)";
+import HomeLoading from "./(home)/loading";
 
 export const metadata = {
   title: 'Ignite Shop',
@@ -9,9 +9,9 @@ export const metadata = {
 }
 
 export default async function Home() {
-  const products = await getProducts();
-
   return (
-    <ProductsList products={products} />
+    <Suspense fallback={<HomeLoading />}>
+      <HomePage />
+    </Suspense>
   )
 }

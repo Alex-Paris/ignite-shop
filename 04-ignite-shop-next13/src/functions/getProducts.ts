@@ -30,7 +30,7 @@ export const getProducts = (async () => {
       }).format((price.unit_amount || 0) * 0.01)
     }
   })
-  console.log(products)
+  console.log("function 'getProducts' executed!")
 
   return products;
 });
@@ -44,7 +44,7 @@ export const getProduct = (async (id: string) => {
 
   const price = product.default_price as Stripe.Price
 
-  console.log(product)
+  console.log("function 'getProduct' executed!")
 
   return {
     id: product.id,
