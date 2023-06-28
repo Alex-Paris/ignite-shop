@@ -36,6 +36,8 @@ export async function generateMetadata(
 export default async function Product({ params }: ProductProps) {
   const product = await getProduct(params.id)
 
+  // await new Promise(resolve => setTimeout(resolve, 100000))
+
   return (
     <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] mx-auto">
       <div className="flex items-center justify-center w-full max-w-xl h-[calc(656px-0.5rem)] bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-lg p-1">

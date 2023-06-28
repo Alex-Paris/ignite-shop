@@ -61,7 +61,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
       </p>
 
       <Link
-        className="block mt-20 text-lg text-green500 hover:text-green300"
+        className="block mt-20 text-lg text-green500 duration-200 hover:text-green300"
         href="/"
       >
         Voltar ao catálogo

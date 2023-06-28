@@ -13,7 +13,7 @@ interface ProductsProps {
   }[]
 }
 
-export default function Products({ products }: ProductsProps) {
+export default function ProductsList({ products }: ProductsProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,

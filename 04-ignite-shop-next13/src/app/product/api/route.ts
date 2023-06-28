@@ -25,4 +25,5 @@ export async function POST(req: Request) {
   })
 
   return res.json({ checkoutUrl: checkoutSession.url }, { status: 201 })
+  // return res.redirect(checkoutSession.url || cancelUrl) // Internal redirect
 }
