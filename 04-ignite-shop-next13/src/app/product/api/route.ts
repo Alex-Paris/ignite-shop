@@ -1,6 +1,7 @@
 import { NextResponse as res } from "next/server";
 
 import { stripe } from "@/lib/stripe";
+import { getProducts } from "@/functions/getProducts";
 
 export async function POST(req: Request) {
   const { priceId } = await req.json();
@@ -26,4 +27,10 @@ export async function POST(req: Request) {
 
   return res.json({ checkoutUrl: checkoutSession.url }, { status: 201 })
   // return res.redirect(checkoutSession.url || cancelUrl) // Internal redirect
+}
+
+export async function GET() {
+  const products = await getProducts();
+
+  return res.json(products, { status: 200 })
 }

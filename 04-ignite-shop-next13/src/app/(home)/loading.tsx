@@ -1,22 +1,9 @@
-'use client'
-
-import { useKeenSlider } from 'keen-slider/react'
-
 import Skeleton from '@/components/Skeleton'
+import { MainSlider } from './components/MainSlider';
 
-export default function HomeLoading() {
-  const [sliderRef] = useKeenSlider({
-    slides: {
-      perView: 3,
-      spacing: 48
-    }
-  })
-
+export default function ProductsListLoading() {
   return (
-    <main
-      ref={sliderRef}
-      className="keen-slider flex ml-auto min-h-[656px]  max-w-[calc(100vw-((100vw-1180px)/2))]"
-    >
+    <MainSlider>
       {
         [1, 2, 3, 4].map((index) => (
           <div
@@ -43,6 +30,6 @@ export default function HomeLoading() {
           </div>
         ))
       }
-    </main>
+    </MainSlider>
   )
 }
