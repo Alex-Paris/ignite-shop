@@ -1,5 +1,6 @@
 import 'server-only'
 
+import { cache } from 'react';
 import Stripe from "stripe"
 
 import { stripe } from "../lib/stripe"
@@ -10,7 +11,7 @@ import { stripe } from "../lib/stripe"
 //export const revalidate = 60 // revalidate this page every 60 seconds
 // that only works on page, route and layout files
 
-export const getProducts = (async () => {
+export const getProducts = cache(async () => {
   // await new Promise(resolve => setTimeout(resolve, 3000))
 
   const response = await stripe.products.list({
@@ -35,7 +36,7 @@ export const getProducts = (async () => {
   return products;
 });
 
-export const getProduct = (async (id: string) => {
+export const getProduct = cache(async (id: string) => {
   // await new Promise(resolve => setTimeout(resolve, 1000))
 
   const product = await stripe.products.retrieve(id, {

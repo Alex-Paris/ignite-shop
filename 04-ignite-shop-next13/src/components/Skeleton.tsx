@@ -6,8 +6,8 @@ export default function Skeleton({ className, ...rest }: SkeletonProps) {
       duration={2}
       borderRadius={8}
       baseColor='#3131314e'
-      className={`opacity-40 ${className}`}
       highlightColor='#525252b4'
+      className={`opacity-40 ${className}`}
       {...rest}
     />
   )

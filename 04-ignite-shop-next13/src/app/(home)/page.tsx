@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { getProducts } from '@/functions/getProducts';
 import { MainSlider } from './components/MainSlider';
 
-export default async function ProductsList() {
+export const revalidate = 60 // revalidate this page every 60 seconds
+
+export default async function Home() {
   const products = await getProducts()
 
   return (
@@ -14,7 +16,7 @@ export default async function ProductsList() {
           <Link
             key={product.id}
             href={`/product/${product.id}`}
-            prefetch={false}
+            // prefetch={false}
             className="keen-slider__slide group bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-lg cursor-pointer relative overflow-hidden flex items-center justify-center"
           >
             <Image
