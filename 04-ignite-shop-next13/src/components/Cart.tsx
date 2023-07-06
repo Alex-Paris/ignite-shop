@@ -12,10 +12,10 @@ export function Cart({ showSumItems = false, className, ...rest }: CartProps) {
 
   return (
     <button
-      className={`group relative bg-gray800 rounded-md p-3 ${className}`}
+      className={`group/cart relative bg-gray800 rounded-md p-3 ${className}`}
       {...rest}
     >
-      <Handbag size={24} weight="bold" className='duration-200 fill-gray300 group-hover:fill-gray100' />
+      <Handbag size={24} weight="bold" className='duration-200 fill-gray300 group-hover/cart:fill-gray100' />
 
       {
         showSumItems && sumItems > 0 &&
