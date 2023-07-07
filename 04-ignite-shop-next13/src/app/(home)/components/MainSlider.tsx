@@ -12,10 +12,12 @@ export const MainSlider = (({ children }: MainSliderProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
 
+  const sliderPerView = 3
+
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     slides: {
-      perView: 3,
+      perView: sliderPerView,
       spacing: 48
     },
     slideChanged(slider) {
@@ -51,7 +53,7 @@ export const MainSlider = (({ children }: MainSliderProps) => {
             }
 
             {
-              currentSlide < instanceRef.current.track.details.slides.length - 3 &&
+              currentSlide < instanceRef.current.track.details.slides.length - sliderPerView &&
               <div className="absolute flex items-center justify-end pr-4 right-0 h-full max-h-[calc(100vh-184px)] w-32 bg-gradient-to-l from-gray900">
                 <button
                   onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}

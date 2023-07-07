@@ -12,7 +12,7 @@ import { stripe } from "../lib/stripe"
 // that only works on page, route and layout files
 
 export const getProducts = cache(async () => {
-  // await new Promise(resolve => setTimeout(resolve, 3000))
+  // await new Promise(resolve => setTimeout(resolve, 30000))
 
   const response = await stripe.products.list({
     expand: ['data.default_price']

@@ -1,10 +1,13 @@
 import ThemeProvider from "./theme"
+import CartProvider from "./cart"
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ThemeProvider>
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </ThemeProvider>
     </>
   )

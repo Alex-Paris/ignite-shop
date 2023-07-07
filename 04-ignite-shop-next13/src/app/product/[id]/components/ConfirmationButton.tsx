@@ -3,6 +3,8 @@
 import { useState } from "react"
 import axios from "axios"
 
+import { Button } from "@/components/Button"
+
 interface ConfirmationButtonProps {
   priceId: string
 }
@@ -25,12 +27,10 @@ export default function ConfirmationButton({ priceId }: ConfirmationButtonProps)
   }
 
   return (
-    <button
+    <Button
       disabled={isCreatingCheckoutSession}
       onClick={handleBuyProduct}
-      className="mt-auto bg-green500 border-0 rounded-lg p-5 cursor-pointer font-bold text-base duration-200 hover:enabled:bg-green300 disabled:opacity-60 disabled:cursor-not-allowed"
-    >
-      Comprar agora
-    </button>
+      caption="Comprar agora"
+    />
   )
 }

@@ -8,13 +8,13 @@ export default function ProductsListLoading() {
         [1, 2, 3, 4].map((index) => (
           <div
             key={index}
-            className="keen-slider__slide group overflow-hidden"
+            className="keen-slider__slide flex flex-col overflow-hidden rounded-lg"
           >
             <div className='flex-1 overflow-hidden'>
               <Skeleton
                 width={1000}
                 height={608}
-                className='flex-1 '
+                className='flex-1'
               />
             </div>
             <div className='flex justify-between mt-2'>
