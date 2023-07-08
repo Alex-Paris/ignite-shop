@@ -5,16 +5,14 @@ import React, {
   useCallback,
   useContext,
   useState,
-  useEffect,
 } from 'react';
 
-interface Products {
-  priceId: string;
-}
+import { Products } from '@/dtos/IProductDTO';
 
 interface CartContextData {
   products: Products[];
-  addProduct({ priceId }: Products): void;
+  showSidebar(show?: boolean): boolean | undefined;
+  addProduct(product: Products): void;
   removeProduct(id: string): void;
 }
 
@@ -22,25 +20,34 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export default function CartProvider({ children }: { children: React.ReactNode }) {
   const [products, setProducts] = useState<Products[]>([]);
+  const [sidebar, setShowSidebar] = useState(false)
 
-  const addProduct = useCallback(({ priceId }: Products) => {
+  const addProduct = useCallback((newProduct: Products) => {
     setProducts((state) => {
-      const productIndex = state.findIndex(product => product.priceId === priceId)
+      const productIndex = state.findIndex(product => product.id === newProduct.id)
       if (productIndex === -1) {
-        return [...state, { priceId }]
+        return [...state, newProduct]
       }
       return [...state]
     });
   }, []);
 
   const removeProduct = useCallback((id: string) => {
-    setProducts((state) => state.filter(product => product.priceId !== id));
+    setProducts((state) => state.filter(product => product.id !== id));
   }, []);
+
+  const showSidebar = useCallback((show?: boolean) => {
+    if (show === undefined) {
+      return sidebar
+    }
+    setShowSidebar(show)
+  }, [sidebar]);
 
   return (
     <CartContext.Provider
       value={{
         products,
+        showSidebar,
         addProduct,
         removeProduct
       }}
