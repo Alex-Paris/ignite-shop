@@ -8,7 +8,7 @@ interface FooterProps {
   product: Products
 }
 
-export const Footer = (({ product: { id, name, price, formattedPrice, imageUrl } }: FooterProps) => {
+export const Footer = (({ product: { id, name, price, formattedPrice, imageUrl, defaultPriceId } }: FooterProps) => {
   const { addProduct, products } = useCart()
 
   const productIndex = products.findIndex(product => product.id === id)
@@ -30,7 +30,8 @@ export const Footer = (({ product: { id, name, price, formattedPrice, imageUrl }
           name,
           price,
           formattedPrice,
-          imageUrl
+          imageUrl,
+          defaultPriceId
         })}
       />
     </footer>

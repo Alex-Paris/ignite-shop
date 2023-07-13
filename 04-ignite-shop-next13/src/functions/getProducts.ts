@@ -29,7 +29,8 @@ export const getProducts = cache(async () => {
       formattedPrice: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
-      }).format((price.unit_amount || 0) * 0.01)
+      }).format((price.unit_amount || 0) * 0.01),
+      defaultPriceId: price.id
     }
   })
   console.log("function 'getProducts' executed!")
