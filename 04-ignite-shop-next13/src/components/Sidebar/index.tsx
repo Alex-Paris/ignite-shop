@@ -21,11 +21,11 @@ export const Sidebar = (() => {
         absolute
         w-[30rem]
         flex flex-col
-        right-0 top-0 bottom-0
+        top-0 bottom-0
         p-6
         bg-gray800 shadow-gray900 shadow-2xl
         duration-300
-        ${showSidebar() !== true && '-right-[30rem] opacity-0'}
+        ${showSidebar() !== true ? '-right-[30rem] opacity-0' : 'right-0'}
       `}
     >
       <X
