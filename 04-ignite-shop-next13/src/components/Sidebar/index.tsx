@@ -79,7 +79,7 @@ export const Sidebar = (() => {
             className='w-full'
             caption='Finalizar compra'
             onClick={handleBuyProducts}
-            disabled={isCreatingCheckoutSession}
+            disabled={products.length === 0 || isCreatingCheckoutSession}
           />
         </footer>
       </div>

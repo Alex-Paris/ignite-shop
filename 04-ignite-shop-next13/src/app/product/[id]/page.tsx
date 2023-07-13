@@ -52,7 +52,7 @@ export default async function Product({ params }: ProductProps) {
 
       <div className="flex flex-col">
         <h1 className="text-lg md:text-2xl text-gray100">{product.name}</h1>
-        <span className="block mt-4 text-lg md:text-2xl text-green300">{product.price}</span>
+        <span className="block mt-4 text-lg md:text-2xl text-green300">{product.formattedPrice}</span>
 
         <p className="mt-10 text-sm md:text-base leading-relaxed text-gray300">
           {product.description}
@@ -68,7 +68,7 @@ export default async function Product({ params }: ProductProps) {
           />
         </div>
 
-        <ConfirmationButton priceId={product.defaultPriceId} />
+        <ConfirmationButton product={product} />
       </div>
     </main>
   )
