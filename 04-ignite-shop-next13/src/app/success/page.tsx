@@ -20,10 +20,10 @@ export async function generateMetadata(
   // fetch data
   const session = await getSession(sessionId);
 
-  const { customerName, product } = session
+  const { customerName } = session
 
   return {
-    title: `Sucesso ${customerName}! ${product.name} é sua! | Ignite Shop`,
+    title: `Sucesso ${customerName}! | Ignite Shop`,
   }
 }
 
@@ -38,7 +38,10 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
     redirect('/')
   }
 
-  const { customerName, product } = session
+  const { customerName, products } = session
+  if (!products) {
+    redirect('/')
+  }
 
   return (
     <main className="flex flex-col items-center justify-center mx-auto h-[656px]">
@@ -46,18 +49,27 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
         Compra efetuada!
       </h1>
 
-      <div className="w-full max-w-[130px] h-[145px] bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-lg p-1 mt-16 flex items-center justify-center">
-        <Image
-          src={product.imageUrl}
-          width={120}
-          height={110}
-          alt=""
-          className="object-cover"
-        />
+      <div className="inline-flex items-center justify-center">
+        {
+          products.map(product => (
+            <div
+              key={product.name}
+              className="-ml-12 first-of-type:ml-0 w-[140px] h-[140px] bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-full shadow-gray800 shadow-2xl p-1 mt-16 flex items-center justify-center"
+            >
+              <Image
+                src={product.imageUrl}
+                width={120}
+                height={110}
+                alt=""
+                className="object-cover"
+              />
+            </div>
+          ))
+        }
       </div>
 
       <p className="text-xl text-gray300 max-w-[560px] text-center mt-8 leading-snug">
-        Uhull <strong>{customerName}</strong>, sua <strong>{product.name}</strong> já está a caminho da sua casa.
+        Uhull <strong>{customerName}</strong>, sua compra de {products.length} camisetas já está a caminho da sua casa.
       </p>
 
       <Link

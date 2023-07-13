@@ -14,22 +14,23 @@ export const getSession = (async (sessionId: string) => {
   if ((!session.line_items) || (!session.line_items.data[0].price)) {
     return {
       customerName,
-      product: {
-        name: '',
-        imageUrl: ''
-      }
     }
   }
 
-  const product = session.line_items.data[0].price.product as Stripe.Product
+  const products = session.line_items.data.map(item => {
+    const product = item.price?.product as Stripe.Product
+    return {
+      name: product.name,
+      imageUrl: product.images[0]
+    }
+  })
+
+  // const product = session.line_items.data[0].price.product as Stripe.Product
 
   console.log("function 'getSession' executed!")
 
   return {
     customerName,
-    product: {
-      name: product.name,
-      imageUrl: product.images[0]
-    }
+    products
   }
 });
