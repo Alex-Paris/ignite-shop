@@ -15,7 +15,7 @@ export default function ConfirmationButton({ priceId }: ConfirmationButtonProps)
   async function handleBuyProduct() {
     try {
       setIsCreatingCheckoutSession(true)
-      const response = await axios.post('api', { priceId })
+      const response = await axios.post('api', { items: [priceId] })
 
       const { checkoutUrl } = response.data;
 
